@@ -12,4 +12,5 @@
 - Existing matches, players, and teams stored in your browser are preserved.
 - Tailwind CSS is loaded from a CDN and requires internet connectivity.
 
-## Live Demo
+## Live Demo Link
+https://soha456929.github.io/Footlytics-Project/
