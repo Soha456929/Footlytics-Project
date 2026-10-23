@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Footlytics | Football Dashboard
+  </title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+  <link href="style.css" rel="stylesheet"/>
+ </head>
+ <body class="dark-theme">
+  <div class="app-shell">
+   <aside class="sidebar" id="sidebar">
+    <div class="brand">
+     <span class="brand-icon">
+      ⚽
+     </span>
+     <span>
+      Foot
+      <span class="accent">
+       lytics
+      </span>
+     </span>
+    </div>
+    <p class="side-label">
+     WORKSPACE
+    </p>
+    <nav aria-label="Main navigation" id="navigation">
+     <button class="nav-link active" data-page="dashboard">
+      ▦
+      <span>
+       Dashboard
+      </span>
+     </button>
+     <button class="nav-link" data-page="teams">
+      ♜
+      <span>
+       Teams
+      </span>
+     </button>
+     <button class="nav-link" data-page="fixtures">
+      ▦
+      <span>
+       Fixtures
+      </span>
+     </button>
+     <button class="nav-link" data-page="results">
+      ◉
+      <span>
+       Results
+      </span>
+     </button>
+     <button class="nav-link" data-page="standings">
+      ▤
+      <span>
+       Standings
+      </span>
+     </button>
+     <button class="nav-link" data-page="players">
+      ♙
+      <span>
+       Players
+      </span>
+     </button>
+    </nav>
+    <div class="sidebar-bottom">
+     <button class="nav-link" id="themeBtn">
+      ☾
+      <span>
+       Toggle theme
+      </span>
+     </button>
+     <p>
+      Student Project &middot; 2026
+     </p>
+    </div>
+   </aside>
+   <div class="main-area">
+    <header class="topbar">
+     <div class="flex items-center gap-3">
+      <button aria-label="Open navigation" class="menu-btn" id="menuBtn">
+       ☰
+      </button>
+      <div>
+       <p class="eyebrow">
+        FOOTBALL MANAGEMENT
+       </p>
+       <h1 class="text-xl md:text-2xl font-bold" id="pageTitle">
+        Dashboard
+       </h1>
+      </div>
+     </div>
+     <div class="top-right">
+      <span class="live-dot">
+      </span>
+      <span>
+       Champions League
+      </span>
+      <span class="avatar">
+       FL
+      </span>
+     </div>
+    </header>
+    <main class="content">
+     <section class="page active" id="dashboard">
+      <div class="hero">
+       <div>
+        <span class="hero-tag">
+         ⚡ YOUR FOOTBALL HQ
+        </span>
+        <h2>
+         Welcome to
+         <span>
+          Footlytics.
+         </span>
+        </h2>
+        <p>
+         Track your teams, manage matches, and stay on top of the league.
+        </p>
+        <button class="primary-btn mt-5" data-go="fixtures">
+         Create Fixture &rarr;
+        </button>
+       </div>
+       <div class="hero-ball">
+        ⚽
+       </div>
+      </div>
+      <div class="stats-grid">
+       <div class="stat-card purple">
+        <p>
+         TEAMS
+        </p>
+        <strong id="statTeams">
+         0
+        </strong>
+        <span>
+         Registered clubs
+        </span>
+       </div>
+       <div class="stat-card blue">
+        <p>
+         FIXTURES
+        </p>
+        <strong id="statFixtures">
+         0
+        </strong>
+        <span>
+         Scheduled matches
+        </span>
+       </div>
+       <div class="stat-card green">
+        <p>
+         PLAYED
+        </p>
+        <strong id="statPlayed">
+         0
+        </strong>
+        <span>
+         Completed games
+        </span>
+       </div>
+       <div class="stat-card orange">
+        <p>
+         TOTAL GOALS
+        </p>
+        <strong id="statGoals">
+         0
+        </strong>
+        <span>
+         Goals scored
+        </span>
+       </div>
+      </div>
+      <div class="two-col">
+       <div class="panel">
+        <div class="panel-heading">
+         <h3>
+          Recent Results
+         </h3>
+         <button class="text-link" data-go="results">
+          View all &rarr;
+         </button>
+        </div>
+        <div id="dashboardResults">
+        </div>
+       </div>
+       <div class="panel">
+        <div class="panel-heading">
+         <h3>
+          League Leaders
+         </h3>
+         <button class="text-link" data-go="standings">
+          Full table &rarr;
+         </button>
+        </div>
+        <div id="dashboardLeaders">
+        </div>
+       </div>
+      </div>
+     </section>
+     <section class="page" id="teams">
+      <div class="page-heading">
+       <div>
+        <h2>
+         Clubs &amp; Teams
+        </h2>
+        <p>
+         Manage your participating football clubs.
+        </p>
+       </div>
+       <button class="primary-btn" id="addTeamBtn">
+        + Add Team
+       </button>
+      </div>
+      <div class="team-grid" id="teamGrid">
+      </div>
+     </section>
+     <section class="page" id="fixtures">
+      <div class="page-heading">
+       <div>
+        <h2>
+         Match Fixtures
+        </h2>
+        <p>
+         Schedule upcoming matches between your teams.
+        </p>
+       </div>
+      </div>
+      <div class="panel mb-6">
+       <h3 class="mb-4 font-semibold">
+        Create a Fixture
+       </h3>
+       <form class="form-grid" id="fixtureForm">
+        <label>
+         Home Team
+         <select id="fixtureHome" required="">
+         </select>
+        </label>
+        <label>
+         Away Team
+         <select id="fixtureAway" required="">
+         </select>
+        </label>
+        <label>
+         Match Date
+         <input id="fixtureDate" required="" type="date"/>
+        </label>
+        <label>
+         Kickoff Time
+         <input id="fixtureTime" required="" type="time"/>
+        </label>
+        <button class="primary-btn" type="submit">
+         + Schedule Match
+        </button>
+       </form>
+      </div>
+      <div class="panel">
+       <div class="panel-heading">
+        <h3>
+         Upcoming Fixtures
+        </h3>
+       </div>
+       <div id="fixtureList">
+       </div>
+      </div>
+     </section>
+     <section class="page" id="results">
+      <div class="page-heading">
+       <div>
+        <h2>
+         Match Results
+        </h2>
+        <p>
+         Enter scores for scheduled matches or record a new result.
+        </p>
+       </div>
+      </div>
+      <div class="panel mb-6">
+       <h3 class="mb-4 font-semibold">
+        Record a Result
+       </h3>
+       <form class="form-grid" id="resultForm">
+        <label>
+         Home Team
+         <select id="resultHome" required="">
+         </select>
+        </label>
+        <label>
+         Away Team
+         <select id="resultAway" required="">
+         </select>
+        </label>
+        <label>
+         Home Goals
+         <input id="homeGoals" max="99" min="0" required="" step="1" type="number"/>
+        </label>
+        <label>
+         Away Goals
+         <input id="awayGoals" max="99" min="0" required="" step="1" type="number"/>
+        </label>
+        <button class="primary-btn" type="submit">
+         Save Result
+        </button>
+       </form>
+      </div>
+      <div class="panel">
+       <div class="panel-heading">
+        <h3>
+         Completed Matches
+        </h3>
+       </div>
+       <div id="resultList">
+       </div>
+      </div>
+     </section>
+     <section class="page" id="standings">
+      <div class="page-heading">
+       <div>
+        <h2>
+         League Standings
+        </h2>
+        <p>
+         Automatically calculated from completed matches.
+        </p>
+       </div>
+      </div>
+      <div class="panel overflow-x-auto">
+       <table class="standings-table">
+        <thead>
+         <tr>
+          <th>
+           #
+          </th>
+          <th>
+           CLUB
+          </th>
+          <th>
+           P
+          </th>
+          <th>
+           W
+          </th>
+          <th>
+           D
+          </th>
+          <th>
+           L
+          </th>
+          <th>
+           GF
+          </th>
+          <th>
+           GA
+          </th>
+          <th>
+           GD
+          </th>
+          <th>
+           PTS
+          </th>
+         </tr>
+        </thead>
+        <tbody id="standingsBody">
+        </tbody>
+       </table>
+      </div>
+      <p class="help-text mt-4">
+       Win = 3 points &middot; Draw = 1 point &middot; Ranked by points, goal difference, then goals scored.
+      </p>
+     </section>
+     <section class="page" id="players">
+      <div class="page-heading">
+       <div>
+        <h2>
+         Player Statistics
+        </h2>
+        <p>
+         Manage players and track goals and assists.
+        </p>
+       </div>
+       <button class="primary-btn" id="addPlayerBtn">
+        + Add Player
+       </button>
+      </div>
+      <div class="panel overflow-x-auto">
+       <table class="standings-table">
+        <thead>
+         <tr>
+          <th>
+           PLAYER
+          </th>
+          <th>
+           TEAM
+          </th>
+          <th>
+           POSITION
+          </th>
+          <th>
+           GOALS
+          </th>
+          <th>
+           ASSISTS
+          </th>
+          <th>
+           ACTION
+          </th>
+         </tr>
+        </thead>
+        <tbody id="playerBody">
+        </tbody>
+       </table>
+      </div>
+      <p class="help-text mt-4">
+       Player statistics are entered manually and are not automatically derived from match results.
+      </p>
+     </section>
+    </main>
+   </div>
+  </div>
+  <div class="modal-backdrop hidden" id="modalBackdrop">
+   <div class="modal">
+    <div class="panel-heading">
+     <h3 id="modalTitle">
+      Add Team
+     </h3>
+     <button aria-label="Close" class="icon-btn" id="closeModal">
+      ✕
+     </button>
+    </div>
+    <form class="modal-form" id="modalForm">
+    </form>
+   </div>
+  </div>
+  <div aria-live="polite" id="toast" role="status">
+  </div>
+  <script src="script.js">
+  </script>
+ </body>
+</html>
+
